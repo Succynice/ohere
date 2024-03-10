@@ -1,5 +1,4 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -10,46 +9,41 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from '@mui/material/styles'; // Import ThemeProvider and createTheme
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import userData from "../data/userData.json";
+import Copyright from "../components/Copyright.jsx";
 
-// Create a dark theme
+
 const darkTheme = createTheme({
- palette: {
-    mode: 'dark', // Set the theme to dark mode
- },
+  palette: {
+    mode: "dark",
+  },
 });
 
-function Copyright(props) {
- return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      fontWeight="fontWeightMedium"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="/" underline="none"> {/* Remove underline from the link */}
-        Ohere App
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
- );
-}
-
 export default function SignIn() {
- const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
- };
+  const [loginError, setLoginError] = useState(false);
 
- return (
-    <ThemeProvider theme={darkTheme}> {/* Wrap the component with ThemeProvider to apply the dark theme */}
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { email, password } = Object.fromEntries(
+      new FormData(event.currentTarget)
+    );
+
+    const user = userData.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      setLoginError(false);
+      console.log("Login successful:", user);
+    } else {
+      setLoginError(true);
+      console.log("Login failed: Invalid email or password");
+    }
+  };
+
+  return (
+    <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="md">
         <CssBaseline />
         <Box
@@ -72,24 +66,25 @@ export default function SignIn() {
             sx={{
               mt: 1,
               borderRadius: 2,
-              border: 1,
+              border: 2,
               borderColor: "grey.500",
               p: { xs: 2, sm: 2, md: 5 },
+              elevation: 8,
+              boxShadow: 5,
             }}
           >
             <Typography
-              component="h1"
               variant="h6"
               align="center"
               color="secondary"
-              sx={{ fontWeight: "fontWeightBold", fontSize: "1.5rem" }}
+              sx={{ fontWeight: "bold", fontSize: "1.5rem" }}
             >
               Welcome Back!
             </Typography>
             <Typography
               variant="subtitle1"
               align="center"
-              sx={{ fontWeight: "fontWeightBold", fontSize: "1.2rem",}}
+              sx={{ fontWeight: "bold", fontSize: "1.2rem" }}
             >
               Please sign in with your details....
             </Typography>
@@ -104,9 +99,7 @@ export default function SignIn() {
               autoFocus
               color="secondary"
               sx={{ my: 3 }}
-              InputLabelProps={{
-                style: { fontWeight: "bold" },
-              }}
+              InputLabelProps={{ fontWeight: "bold" }}
             />
             <TextField
               margin="normal"
@@ -119,9 +112,7 @@ export default function SignIn() {
               autoComplete="current-password"
               color="secondary"
               sx={{ mb: 3 }}
-              InputLabelProps={{
-                style: { fontWeight: "bold" },
-              }}
+              InputLabelProps={{ fontWeight: "bold" }}
             />
             <Grid
               container
@@ -131,28 +122,37 @@ export default function SignIn() {
             >
               <Grid item>
                 <FormControlLabel
-                 control={<Checkbox value="remember" color="secondary" />}
-                 label={<Typography>Remember me</Typography>}
+                  control={<Checkbox value="remember" color="secondary" />}
+                  label={<Typography>Remember me</Typography>}
                 />
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                 Forgot password?
+                  Forgot password?
                 </Link>
               </Grid>
             </Grid>
+            {loginError && (
+              <Typography color="error" align="center">
+                Invalid email or password
+              </Typography>
+            )}
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, py: 2, borderRadius: 3 }}
+              fontWeight="bold"
+              sx={{ mt: 3, mb: 2, py: 2, borderRadius: 3, fontWeight: "bold" }}
             >
-              Sign In
+              LOGIN
             </Button>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
- );
+  );
 }
+
+
+
