@@ -25,12 +25,11 @@ function Copyright(props) {
       variant="body2"
       color="text.secondary"
       align="center"
-      color="secondary.main"
       fontWeight="fontWeightMedium"
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/" underline="none"> {/* Remove underline from the link */}
+      <Link color="inherit" href="/" underline="none"> {/* Remove underline from the link */}
         Ohere App
       </Link>{" "}
       {new Date().getFullYear()}
