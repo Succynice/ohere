@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
+import Avatar from "@mui/material/Avatar";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
@@ -9,16 +8,10 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import userData from "../data/userData.json";
 import Copyright from "../components/Copyright.jsx";
-
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+import DarkTheme from "../components/DarkTheme";
+import CustomLoginForm from "../components/CustomLoginForm";
 
 export default function SignIn() {
   const [loginError, setLoginError] = useState(false);
@@ -43,9 +36,8 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <DarkTheme>
       <Container component="main" maxWidth="md">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
@@ -54,10 +46,10 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <img
-            src="https://ohere-online.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F7e37d2e5-0aa4-4da6-8b15-2b37a3731ae6%2Fed38ebca-0977-4d89-9a47-6d7c4d022da1%2Fohere_logo.png?table=block&id=f9e51275-3738-4bd9-aaee-cbfc1726b01f&spaceId=7e37d2e5-0aa4-4da6-8b15-2b37a3731ae6&width=1020&userId=&cache=v2"
+          <Avatar
             alt="Company Logo"
-            style={{ width: "100px", height: "100px", marginBottom: "16px" }}
+            src="https://ohere-online.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F7e37d2e5-0aa4-4da6-8b15-2b37a3731ae6%2Fed38ebca-0977-4d89-9a47-6d7c4d022da1%2Fohere_logo.png?table=block&id=f9e51275-3738-4bd9-aaee-cbfc1726b01f&spaceId=7e37d2e5-0aa4-4da6-8b15-2b37a3731ae6&width=1020&userId=&cache=v2"
+            sx={{ width: 100, height: 100, mb: 2 }}
           />
           <Box
             component="form"
@@ -77,43 +69,33 @@ export default function SignIn() {
               variant="h6"
               align="center"
               color="secondary"
-              sx={{ fontWeight: "bold", fontSize: "1.5rem" }}
+              sx={{
+                fontWeight: "bold",
+                fontSize: {
+                  xs: "1.5rem", 
+                  md: "1.9rem", 
+                },
+             }}
             >
               Welcome Back!
             </Typography>
             <Typography
               variant="subtitle1"
               align="center"
-              sx={{ fontWeight: "bold", fontSize: "1.2rem" }}
+              sx={{
+                fontWeight: "regular",
+                fontSize: {
+                  xs: "0.9rem", 
+                  md: "1.2rem", 
+                },
+             }}
             >
               Please sign in with your details....
             </Typography>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              color="secondary"
-              sx={{ my: 3 }}
-              InputLabelProps={{ fontWeight: "bold" }}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              color="secondary"
-              sx={{ mb: 3 }}
-              InputLabelProps={{ fontWeight: "bold" }}
-            />
+            
+            {/***  Form Field Component ****/}
+            <CustomLoginForm />
+
             <Grid
               container
               spacing={2}
@@ -142,7 +124,13 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               fontWeight="bold"
-              sx={{ mt: 3, mb: 2, py: 2, borderRadius: 3, fontWeight: "bold" }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                padding: "0.8rem",
+                borderRadius: 3,
+                fontSize: "1.2rem",
+              }}
             >
               LOGIN
             </Button>
@@ -150,9 +138,6 @@ export default function SignIn() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    </DarkTheme>
   );
 }
-
-
-
