@@ -49,7 +49,7 @@ export default function SignIn() {
           <Avatar
             alt="Company Logo"
             src="https://ohere-online.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F7e37d2e5-0aa4-4da6-8b15-2b37a3731ae6%2Fed38ebca-0977-4d89-9a47-6d7c4d022da1%2Fohere_logo.png?table=block&id=f9e51275-3738-4bd9-aaee-cbfc1726b01f&spaceId=7e37d2e5-0aa4-4da6-8b15-2b37a3731ae6&width=1020&userId=&cache=v2"
-            sx={{ width: 100, height: 100, mb: 2 }}
+            sx={{ width: 140, height: 130, mb: 2 }}
           />
           <Box
             component="form"
@@ -77,7 +77,7 @@ export default function SignIn() {
                 },
              }}
             >
-              Welcome Back!
+              Welcome Back! 😊
             </Typography>
             <Typography
               variant="subtitle1"
@@ -109,7 +109,7 @@ export default function SignIn() {
                 />
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color="error">
                   Forgot password?
                 </Link>
               </Grid>
@@ -123,13 +123,14 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              fontWeight="bold"
+              color="secondary"
               sx={{
                 mt: 3,
                 mb: 2,
-                padding: "0.8rem",
+                padding: "0.6rem",
                 borderRadius: 3,
-                fontSize: "1.2rem",
+                fontSize: "1.4rem",
+                fontWeight: "bold",
               }}
             >
               LOGIN
