@@ -1,16 +1,12 @@
-import { Button } from "@mui/material";
+import React from 'react';
+import Button from '@mui/material/Button';
 
-
-export default function MyButton() {
-  return (
-    <Button 
-      sx={{
-        backgroundColor: 'violet', '&:hover': {
-          backgroundColor: 'white',
-        }
-      }}
-    >
-      Submit
+const MyButton = ({ onClick, children }) => {
+ return (
+    <Button variant="contained" color="primary" onClick={onClick}>
+      {children}
     </Button>
-  )
-}
+ );
+};
+
+export default MyButton;
