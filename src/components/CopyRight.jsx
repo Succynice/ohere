@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-function Copyright(props) {
+function CopyRight(props) {
   return (
     <Typography
       variant="body2"
@@ -32,4 +32,4 @@ function Copyright(props) {
   );
 }
 
-export default Copyright;
+export default CopyRight;
