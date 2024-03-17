@@ -1,8 +1,13 @@
-# React + Vite
+# DASHBOARD PAGE
+****************************************************************
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+*  Download the code & run `npm install` to install dependencies before starting the app.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* You'll also need to install Material UI as a dependency. run 
+`npm install @mui/material @emotion/react @emotion/styled` 
+
+* run `npm install @mui/icons-material` to install material icons
+
+> check out the ***[Mateial UI](https://mui.com/material-ui/getting-started/installation/)*** installation documentation for more information
+

@@ -1,20 +1,24 @@
-import { Routes, Route, Link } from 'react-router-dom';
-import './App.css'
-import Home from './pages/Home';
-import About from './pages/About';
-import Login from './pages/Login';
+// import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import UserManagement from "./pages/UserManagement";
+import AdminDashboard from "./pages/TxtAdminLogin";
+import UserDetailPage from "./pages/UserDetailPage";
+import DarkTheme from "./components/DarkTheme";
 
-
-
-// Create our root component => App Component
+// Root component => App Component
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/login" element={<Login />} />
-    </Routes>
+    <DarkTheme>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/user" element={<UserManagement />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/user/:id" element={<UserDetailPage />} />
+      </Routes>
+    </DarkTheme>
   );
 }
 
-export default App
+export default App;
+

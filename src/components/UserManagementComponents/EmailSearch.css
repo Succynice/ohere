@@ -1,0 +1,17 @@
+/* EmailSearch.css */
+.emailSearchContainer {
+  display: flex;
+  justify-content: flex-end;
+ }
+ 
+ .emailSearchField {
+  width: 90%;
+  margin-right: 10px;
+  /* margin: 0; */
+ }
+ 
+ /* .emailSearchButton {
+  width: 30%;
+ } */
+
+ 

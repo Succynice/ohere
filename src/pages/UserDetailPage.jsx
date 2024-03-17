@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 
-const HomePage = () => {
+const UserDetailPage = () => {
  return (
     <div>
       <Typography variant="h4" gutterBottom>
@@ -11,4 +11,4 @@ const HomePage = () => {
  );
 };
 
-export default HomePage;
+export default UserDetailPage;
