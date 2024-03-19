@@ -20,7 +20,7 @@ import axios from "axios";
 const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
   const [bankAccounts, setBankAccounts] = useState([]);
   const [page, setPage] = useState(0); // Note: TablePagination uses 0-based indexing
-  const [rowsPerPage, setRowsPerPage] = useState(20); // State to manage the number of bank accounts per page
+  const [rowsPerPage, setRowsPerPage] = useState(10); // State to manage the number of bank accounts per page
 
   useEffect(() => {
     axios
@@ -51,8 +51,12 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
   // Filter bank accounts based on the search query
   const filteredAccounts = bankAccounts.filter(
     (account) =>
-      account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      account.bankAccountNumber.toLowerCase().includes(searchTerm.toLowerCase())
+      (account.name &&
+        account.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (account.bankAccountNumber &&
+        account.bankAccountNumber
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()))
   );
 
   // Determine which bank accounts to display based on pagination
@@ -124,19 +128,18 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
       </Table>
 
       {/* Pagination controls for navigating through bank accounts */}
-      <Typography variant="body2">
-        <TablePagination
-          component="div"
-          count={filteredAccounts.length}
-          page={page}
-          onPageChange={handleChangePage}
-          rowsPerPage={rowsPerPage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          sx={{
-            color: "warning.dark",
-          }}
-        />
-      </Typography>
+      <TablePagination
+        component="div"
+        count={filteredAccounts.length}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        rowsPerPageOptions={[10, 25, 50, 100]}
+        sx={{
+          color: "warning.dark",
+        }}
+      />
     </TableContainer>
   );
 };
