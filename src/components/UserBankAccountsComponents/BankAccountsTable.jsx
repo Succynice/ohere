@@ -15,15 +15,18 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 
+// ******* This component is designed to display a list of bank accounts in a table format, with the ability to filter bank accounts by a search query and paginate through the bank accounts. The TablePagination component provides controls for changing the number of bank accounts displayed per page and navigating between pages. ********//
+
 const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
   const [bankAccounts, setBankAccounts] = useState([]);
   const [page, setPage] = useState(0); // Note: TablePagination uses 0-based indexing
-  const [rowsPerPage, setRowsPerPage] = useState(20);
+  const [rowsPerPage, setRowsPerPage] = useState(20); // State to manage the number of bank accounts per page
 
   useEffect(() => {
     axios
-      .get("https://randomuser.me/api/?results=200") // Fetch 2000 random users
+      .get("https://randomuser.me/api/?results=200") // Fetch 200 random users
       .then((response) => {
+        // Map the fetched users to a format suitable for the table
         const usersWithBankAccounts = response.data.results.map((user) => ({
           id: user.id.value,
           name: `${user.name.first} ${user.name.last}`,
@@ -34,21 +37,25 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
       .catch((error) => console.error("Error fetching data: ", error));
   }, []);
 
+  // Handler for changing the current page of bank accounts
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
+  // Handler for changing the number of bank accounts per page
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0); // Reset to the first page when changing rows per page
   };
 
+  // Filter bank accounts based on the search query
   const filteredAccounts = bankAccounts.filter(
     (account) =>
       account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       account.bankAccountNumber.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Determine which bank accounts to display based on pagination
   const paginatedAccounts = filteredAccounts.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
@@ -56,6 +63,7 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
 
   return (
     <TableContainer component={Paper} sx={{ boxShadow: 5, p: 4, my: 4 }}>
+      {/* Search field for filtering bank accounts */}
       <TextField
         label="Search"
         variant="outlined"
@@ -75,6 +83,8 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
         }}
         sx={{ marginBottom: 2 }}
       />
+
+      {/* Table to display bank accounts */}
       <Table>
         <TableHead>
           <TableRow>
@@ -97,6 +107,7 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
           </TableRow>
         </TableHead>
         <TableBody>
+          {/* Map over filtered and paginated bank accounts to display them in the table */}
           {paginatedAccounts.map((account) => (
             <TableRow key={account.id}>
               <TableCell>
@@ -111,6 +122,8 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
           ))}
         </TableBody>
       </Table>
+
+      {/* Pagination controls for navigating through bank accounts */}
       <Typography variant="body2">
         <TablePagination
           component="div"
