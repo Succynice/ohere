@@ -15,12 +15,15 @@ import {
   TextField,
   InputAdornment,
   IconButton,
+  TablePagination,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 
 const UserList = ({ users, onUserClick }) => {
   // **** State to manage the search term
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(0); // State for current page
+  const [rowsPerPage, setRowsPerPage] = useState(5); // State for rows per page
 
   // ** Function to filter users based on the search term
   const filteredUsers = users.filter(
@@ -44,12 +47,30 @@ const UserList = ({ users, onUserClick }) => {
   // ** Calculate the width based on the screen size
   const tableWidth = isSmallOrMediumScreen ? "95%" : "90%";
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <Box>
-      {/* Search Box */}
-      <Box
-        sx={{ display: "flex", justifyContent: "flex-end", marginBottom: 2 }}
+      {/* Table Container */}
+      <TableContainer
+        component={Paper}
+        sx={{
+          maxWidth: tableWidth,
+          overflowX: "auto",
+          margin: "auto",
+          boxShadow: 5,
+          borderRadius: 3,
+          padding: 2,
+        }}
       >
+        {/* Search Field */}
         <TextField
           // fullWidth
           placeholder="Search"
@@ -70,20 +91,6 @@ const UserList = ({ users, onUserClick }) => {
             },
           }}
         />
-      </Box>
-
-      {/* Table Container */}
-      <TableContainer
-        component={Paper}
-        sx={{
-          maxWidth: tableWidth,
-          overflowX: "auto",
-          margin: "auto",
-          boxShadow: 5,
-          borderRadius: 3,
-          padding: 2,
-        }}
-      >
         {/* Table */}
         <Table
           sx={{
@@ -137,7 +144,13 @@ const UserList = ({ users, onUserClick }) => {
           {/* Table Body */}
           <TableBody>
             {/* Render each user */}
-            {filteredUsers.map((user, index) => (
+            {(rowsPerPage > 0
+              ? filteredUsers.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+              : filteredUsers
+            ).map((user, index) => (
               <TableRow
                 key={index}
                 sx={{
@@ -167,10 +180,24 @@ const UserList = ({ users, onUserClick }) => {
             ))}
           </TableBody>
         </Table>
+        {/* Pagination */}
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={filteredUsers.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          sx={{
+            "& .MuiTablePagination-select, & .MuiTablePagination-input": {
+              color: "secondary.main",
+            },
+          }}
+        />
       </TableContainer>
     </Box>
   );
 };
 
 export default UserList;
-

@@ -43,7 +43,7 @@ const UserManagement = () => {
   return (
     <div>
       {/* Styled "Users" as a header bar */}
-      <Paper
+      {/* <Paper
         sx={{
           padding: 2,
           marginBottom: 2,
@@ -55,7 +55,7 @@ const UserManagement = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Users
         </Typography>
-      </Paper>
+      </Paper> */}
 
       {/* USER LIST */}
       <Grid container spacing={2} sx={{ marginTop: 2 }}>
