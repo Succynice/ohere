@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
+// **************************************************************** This component is designed to display a list of transactions in a table format, with the ability to filter transactions by a search query and paginate through the transactions. The TablePagination component provides controls for changing the number of transactions displayed per page and navigating between pages. *****************************************************************
+
 const TransactionHistory = ({ transactions }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
