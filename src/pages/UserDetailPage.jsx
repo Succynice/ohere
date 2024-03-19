@@ -12,8 +12,6 @@ import FinancialStatistics from "../components/UserDetailComponents/FinancialSta
 import KYCStatus from "../components/UserDetailComponents/KYCStatus";
 import TransactionHistory from "../components/UserDetailComponents/TransactionHistory";
 
-
-
 // UserDetailPage component to display user details, financial statistics, KYC status, and transaction history
 const UserDetailPage = () => {
   const [user, setUser] = useState({});
