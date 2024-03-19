@@ -11,6 +11,7 @@ import {
   TextField,
   InputAdornment,
   Typography,
+  Box,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
@@ -69,7 +70,7 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
     <TableContainer component={Paper} sx={{ boxShadow: 5, p: 4, my: 4 }}>
       {/* Search field for filtering bank accounts */}
       <TextField
-        label="Search"
+        label="Search User"
         variant="outlined"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -80,7 +81,7 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
             </InputAdornment>
           ),
           sx: {
-            borderRadius: 5,
+            borderRadius: 3,
             height: 40,
             width: 400,
           },
@@ -128,18 +129,22 @@ const BankAccountsTable = ({ searchTerm, setSearchTerm }) => {
       </Table>
 
       {/* Pagination controls for navigating through bank accounts */}
-      <TablePagination
-        component="div"
-        count={filteredAccounts.length}
-        page={page}
-        onPageChange={handleChangePage}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        rowsPerPageOptions={[10, 25, 50, 100]}
-        sx={{
-          color: "warning.dark",
-        }}
-      />
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <TablePagination
+          component="div"
+          count={filteredAccounts.length}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          rowsPerPageOptions={[10, 25, 50, 100]}
+          sx={{
+            color: "warning.dark",
+          }}
+        />
+      </Box>
     </TableContainer>
   );
 };
