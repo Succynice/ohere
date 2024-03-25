@@ -155,6 +155,7 @@ export default function AdminDashboard() {
               onClick={() => navigateTo("/admin/home")}
               sx={{
                 color: isActive("/admin/home") ? "primary.main" : "inherit",
+                py: 2,
               }}
             >
               <ListItemIcon>
@@ -172,12 +173,15 @@ export default function AdminDashboard() {
               />
             </ListItemButton>
           </ListItem>
+          <Divider />
+
           {/* User Management tab */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => navigateTo("/admin/user")}
               sx={{
                 color: isActive("/admin/user") ? "primary.main" : "inherit",
+                py: 2,
               }}
             >
               <ListItemIcon>
@@ -195,12 +199,15 @@ export default function AdminDashboard() {
               />
             </ListItemButton>
           </ListItem>
+          <Divider />
+
           {/* Savings Accounts tab */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => navigateTo("/admin/savings")}
               sx={{
                 color: isActive("/admin/savings") ? "primary.main" : "inherit",
+                py: 2,
               }}
             >
               <ListItemIcon>
@@ -222,12 +229,15 @@ export default function AdminDashboard() {
               />
             </ListItemButton>
           </ListItem>
+          <Divider />
+
           {/* User Bank Accounts tab */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => navigateTo("/admin/bank")}
               sx={{
                 color: isActive("/admin/bank") ? "primary.main" : "inherit",
+                py: 2,
               }}
             >
               <ListItemIcon>
@@ -245,12 +255,15 @@ export default function AdminDashboard() {
               />
             </ListItemButton>
           </ListItem>
+          <Divider />
+
           {/* KYC Verification tab */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => navigateTo("/admin/kyc")}
               sx={{
                 color: isActive("/admin/kyc") ? "primary.main" : "inherit",
+                py: 2,
               }}
             >
               <ListItemIcon>
@@ -268,6 +281,7 @@ export default function AdminDashboard() {
               />
             </ListItemButton>
           </ListItem>
+          <Divider />
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
