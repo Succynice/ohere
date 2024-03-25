@@ -1,27 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TablePagination } from '@mui/material';
-import { styled } from '@mui/system';
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+  TablePagination,
+} from "@mui/material";
+import { styled } from "@mui/system";
 
 // Custom styled TableCell component for applying consistent styling to table headers
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
- [`&.MuiTableCell-head`]: {
+  [`&.MuiTableCell-head`]: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
- },
+    color: theme.palette.secondary.main,
+  },
 }));
 
 const StudentCreditTable = () => {
- const [data, setData] = useState([]);
- const [page, setPage] = useState(0);
- const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
- useEffect(() => {
+  useEffect(() => {
     // Fetch data from the API on component mount
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((json) => {
         // Transform the fetched data to fit our table structure
-        const transformedData = json.map(item => ({
+        const transformedData = json.map((item) => ({
           user: `user${item.id}@example.com`, // Simulate user email
           // financialGoal: `Goal ${item.id}`, // Simulate financial goal
           goalTimeline: `${Math.floor(Math.random() * 5) + 1} years`, // Random timeline
@@ -31,30 +42,31 @@ const StudentCreditTable = () => {
         }));
         setData(transformedData);
       })
-      .catch(error => console.error('Error fetching data: ', error));
- }, []);
+      .catch((error) => console.error("Error fetching data: ", error));
+  }, []);
 
- // Handler for changing the page
- const handleChangePage = (event, newPage) => {
+  // Handler for changing the page
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
- };
+  };
 
- // Handler for changing the number of rows per page
- const handleChangeRowsPerPage = (event) => {
+  // Handler for changing the number of rows per page
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0); // Reset to the first page when changing rows per page
- };
+  };
 
- return (
-    <Box sx={{ width: '100%' }}>
+  return (
+    <Box sx={{ width: "100%" }}>
       <TableContainer component={Paper} sx={{ boxShadow: 5, p: 4, my: 2 }}>
-        <Table sx={{ minWidth: 650 }} aria-label="Table for Student Credit Goal">
+        <Table
+          sx={{ minWidth: 650 }}
+          aria-label="Table for Student Credit Goal"
+        >
           <TableHead>
             <TableRow>
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
-                 User
-                </Typography>
+                <Typography variant="h6">User</Typography>
               </StyledTableCell>
               {/* <StyledTableCell>
                 <Typography variant="h6" sx={{ color: "secondary.main" }}>
@@ -62,24 +74,16 @@ const StudentCreditTable = () => {
                 </Typography>
               </StyledTableCell> */}
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
-                 Goal Timeline
-                </Typography>
+                <Typography variant="h6">Goal Timeline</Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
-                 Total Savings
-                </Typography>
+                <Typography variant="h6">Total Savings</Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
-                 Available Balance
-                </Typography>
+                <Typography variant="h6">Available Balance</Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
-                 Reward
-                </Typography>
+                <Typography variant="h6">Reward</Typography>
               </StyledTableCell>
             </TableRow>
           </TableHead>
@@ -114,7 +118,7 @@ const StudentCreditTable = () => {
         />
       </TableContainer>
     </Box>
- );
+  );
 };
 
 export default StudentCreditTable;
