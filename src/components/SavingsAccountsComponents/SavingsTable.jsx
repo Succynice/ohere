@@ -6,7 +6,7 @@ import { styled } from '@mui/system';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
  [`&.MuiTableCell-head`]: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color: theme.palette.secondary.main,
  },
 }));
 
@@ -52,7 +52,7 @@ const SavingsTable = () => {
           <TableHead>
             <TableRow>
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
+                <Typography variant="h6" >
                  User
                 </Typography>
               </StyledTableCell>
@@ -62,22 +62,22 @@ const SavingsTable = () => {
                 </Typography>
               </StyledTableCell> */}
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
+                <Typography variant="h6">
                  Goal Timeline
                 </Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
+                <Typography variant="h6">
                  Total Savings
                 </Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
+                <Typography variant="h6">
                  Available Balance
                 </Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h6" sx={{ color: "secondary.main" }}>
+                <Typography variant="h6">
                  Reward
                 </Typography>
               </StyledTableCell>
