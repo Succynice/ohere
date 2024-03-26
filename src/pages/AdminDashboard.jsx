@@ -21,6 +21,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Avatar from "@mui/material/Avatar"; // Import Avatar
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { debounce } from "lodash"; // Import debounce from lodash
 
@@ -112,8 +113,22 @@ export default function AdminDashboard() {
 
   // Function to determine if a route is active
   const isActive = (path) => {
-    return location.pathname.startsWith(path);
+    // Check if the current path exactly matches the given path or starts with it
+    // Exclude the Home tab from this check to ensure it's not always highlighted
+    return (
+      location.pathname === path ||
+      (location.pathname.startsWith(path) && path !== "/admin/")
+    );
   };
+
+  // Example user object. Replace this with your actual user data.
+  const user = {
+    firstName: "John",
+    lastName: "Doe",
+    avatarUrl: "https://example.com/avatar.jpg", // Replace with the actual avatar URL
+  };
+
+  console.log(user);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -132,8 +147,23 @@ export default function AdminDashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Admin Dashboard
+          {/* Profile Avatar and First Name */}
+
+          <Typography variant="h5" color="success.main" noWrap component="div">
+            Welcome Back!
+          </Typography>
+          <Avatar
+            alt={`${user.firstName} ${user.lastName}`}
+            src={user.avatarUrl}
+            sx={{ marginLeft: 2, marginRight: 2 }}
+          />
+          <Typography
+            variant="h6"
+            color="text.secondary"
+            noWrap
+            component="div"
+          >
+            {`${user.firstName} ${user.lastName}`}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -152,23 +182,23 @@ export default function AdminDashboard() {
           {/* Home tab */}
           <ListItem disablePadding>
             <ListItemButton
-              onClick={() => navigateTo("/admin/home")}
+              onClick={() => navigateTo("/admin/")}
               sx={{
-                color: isActive("/admin/home") ? "primary.main" : "inherit",
+                color: isActive("/admin/") ? "primary.main" : "inherit",
                 py: 2,
               }}
             >
               <ListItemIcon>
                 <DashboardIcon
                   sx={{
-                    color: isActive("/admin/home") ? "primary.main" : "inherit",
+                    color: isActive("/admin/") ? "primary.main" : "inherit",
                   }}
                 />
               </ListItemIcon>
               <ListItemText
                 primary="Home"
                 sx={{
-                  color: isActive("/admin/home") ? "primary.main" : "inherit",
+                  color: isActive("/admin/") ? "primary.main" : "inherit",
                 }}
               />
             </ListItemButton>
