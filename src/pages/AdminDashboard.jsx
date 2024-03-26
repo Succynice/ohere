@@ -149,7 +149,7 @@ export default function AdminDashboard() {
           </IconButton>
           {/* Profile Avatar and First Name */}
 
-          <Typography variant="h5" color="success.main" noWrap component="div">
+          <Typography variant="body1" color="success.main" noWrap component="div">
             Welcome Back!
           </Typography>
           <Avatar
@@ -158,7 +158,7 @@ export default function AdminDashboard() {
             sx={{ marginLeft: 2, marginRight: 2 }}
           />
           <Typography
-            variant="h6"
+            variant="body1"
             color="text.secondary"
             noWrap
             component="div"
