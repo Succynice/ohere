@@ -8,6 +8,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import DeviceHubIcon from "@mui/icons-material/DeviceHub";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
+import Divider from "@mui/material/Divider";
 import SavingsTable from "../components/SavingsAccountsComponents/SavingsTable";
 import StudentCreditTable from "../components/SavingsAccountsComponents/StudentCreditTable";
 import GadgetCreditTable from "../components/SavingsAccountsComponents/GadgetCreditTable";
@@ -99,6 +100,7 @@ export default function SavingsAccounts() {
             {...a11yProps(4)}
           />
         </Tabs>
+        <Divider />
       </Box>
       {/* Custom TabPanel components for each tab */}
       <CustomTabPanel value={value} index={0}>
