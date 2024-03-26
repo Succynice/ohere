@@ -13,11 +13,12 @@ function App() {
   return (
     <DarkTheme>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/user" element={<UserManagement />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        {/* <Route path="/user" element={<UserManagement />} /> */}
         <Route path="/admin/*" element={<AdminDashboard />}>
           {/* Nested routes for AdminDashboard */}
-          <Route path="home" element={<Home />} />
+          <Route index element={<Home />} />
+          {/* <Route path="home" element={<Home />} /> */}
           <Route path="user" element={<UserManagement />} />
           <Route path="savings" element={<SavingsAccounts />} />
           <Route path="bank" element={<UserBankAccounts />} />
